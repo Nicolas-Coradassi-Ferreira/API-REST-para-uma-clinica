@@ -6,6 +6,7 @@ public enum Especialidade {
     GINECOLOGIA,
     ODONTOLOGIA,
     OTORRINOLARINGOLOGIA,
-    CARDIOLOGIA
+    CARDIOLOGIA,
+    DERMATOLOGIA
 
 }

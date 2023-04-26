@@ -25,6 +25,8 @@ public class PacienteEntity {
     @Embedded
     private Endereco endereco;
 
+    private boolean ativo;
+
     public PacienteEntity(DadosCadastroPaciente dados){
         this.id = null;
         this.nome = dados.nome();
@@ -32,6 +34,7 @@ public class PacienteEntity {
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
+        this.ativo = true;
     }
 
     public void atualizarDadosCadastrais(DadosAtualizacaoPaciente dados){
@@ -44,6 +47,10 @@ public class PacienteEntity {
         }
 
         this.endereco.atualizarDados(dados.endereco());
+    }
+
+    public void inativar() {
+        this.ativo = false;
     }
 }
 

@@ -25,7 +25,7 @@ public class PacienteController {
 
     @GetMapping
     public Page<DadosListagemPacientes> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListagemPacientes::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPacientes::new);
     }
 
     @PutMapping
@@ -33,5 +33,18 @@ public class PacienteController {
     public void atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados){
         var paciente = repository.getReferenceById(dados.id());
         paciente.atualizarDadosCadastrais(dados);
+    }
+
+    @DeleteMapping("excluir/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        repository.deleteById(id);
+    }
+
+    @DeleteMapping("inativar/{id}")
+    @Transactional
+    public void inativar(@PathVariable Long id){
+        var paciente = repository.getReferenceById(id);
+        paciente.inativar();
     }
 }

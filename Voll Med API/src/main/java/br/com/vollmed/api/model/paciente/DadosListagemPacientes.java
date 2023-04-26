@@ -11,4 +11,5 @@ public record DadosListagemPacientes(
     public DadosListagemPacientes(PacienteEntity paciente){
         this(paciente.getId(), paciente.getNome(), paciente.getEmail(), paciente.getCpf());
     }
+
 }
