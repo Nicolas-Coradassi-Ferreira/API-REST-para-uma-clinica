@@ -1,4 +1,4 @@
-package br.com.vollmed.api.controllers;
+package br.com.vollmed.api.model.paciente;
 
 import br.com.vollmed.api.model.paciente.PacienteEntity;
 
