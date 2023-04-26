@@ -33,6 +33,18 @@ public class PacienteEntity {
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
     }
+
+    public void atualizarDadosCadastrais(DadosAtualizacaoPaciente dados){
+        if (dados.nome() != null && !dados.nome().isBlank()){
+            this.nome = dados.nome();
+        }
+
+        if (dados.telefone() != null && !dados.telefone().isBlank()){
+            this.telefone = dados.telefone();
+        }
+
+        this.endereco.atualizarDados(dados.endereco());
+    }
 }
 
 

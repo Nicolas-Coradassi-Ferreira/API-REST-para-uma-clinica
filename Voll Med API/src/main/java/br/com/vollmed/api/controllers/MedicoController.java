@@ -1,16 +1,13 @@
 package br.com.vollmed.api.controllers;
 
 
-import br.com.vollmed.api.model.medico.DadosListagemMedicos;
-import br.com.vollmed.api.model.medico.DadosCadastroMedico;
-import br.com.vollmed.api.model.medico.MedicoEntity;
-import br.com.vollmed.api.model.medico.MedicoRepository;
-import jakarta.transaction.Transactional;
+import br.com.vollmed.api.model.medico.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,6 +25,26 @@ public class MedicoController {
 
     @GetMapping
     public Page<DadosListagemMedicos> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
-        return repository.findAll(paginacao).map(DadosListagemMedicos::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedicos::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarDadosCadastrais(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        repository.deleteById(id);
+    }
+
+    @DeleteMapping("/inativar/{id}")
+    @Transactional
+    public void inativar(@PathVariable Long id){
+        var medico = repository.getReferenceById(id);
+        medico.inativar();
     }
 }

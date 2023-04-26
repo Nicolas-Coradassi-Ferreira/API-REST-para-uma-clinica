@@ -27,6 +27,8 @@ public class MedicoEntity {
     @Embedded
     private Endereco endereco;
 
+    private boolean ativo;
+
     public MedicoEntity(DadosCadastroMedico dados){
         this.id = null;
         this.nome = dados.nome();
@@ -35,5 +37,22 @@ public class MedicoEntity {
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
+        this.ativo = true;
+    }
+
+    public void atualizarDadosCadastrais(DadosAtualizacaoMedico dados){
+        if (dados.nome() != null && !dados.nome().isBlank()) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.telefone() != null && !dados.telefone().isBlank()) {
+            this.telefone = dados.telefone();
+        }
+
+        this.endereco.atualizarDados(dados.endereco());
+    }
+
+    public void inativar() {
+        this.ativo = false;
     }
 }

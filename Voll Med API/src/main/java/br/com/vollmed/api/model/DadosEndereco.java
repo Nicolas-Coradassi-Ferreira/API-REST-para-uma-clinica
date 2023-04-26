@@ -13,6 +13,7 @@ public record DadosEndereco(
         @NotBlank
         String cidade,
         @NotBlank
+        @Pattern(regexp = "^[A-Z]{2}$")
         String uf,
         @NotBlank
         @Pattern(regexp = "^\\d{8}$")
