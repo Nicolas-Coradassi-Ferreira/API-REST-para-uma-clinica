@@ -1,6 +1,6 @@
-package br.com.vollmed.api.model.paciente;
+package br.com.vollmed.api.dto.paciente;
 
-import br.com.vollmed.api.model.paciente.PacienteEntity;
+import br.com.vollmed.api.model.paciente.Paciente;
 
 public record DadosListagemPacientes(
         Long id,
@@ -8,7 +8,7 @@ public record DadosListagemPacientes(
         String email,
         String cpf) {
 
-    public DadosListagemPacientes(PacienteEntity paciente){
+    public DadosListagemPacientes(Paciente paciente){
         this(paciente.getId(), paciente.getNome(), paciente.getEmail(), paciente.getCpf());
     }
 

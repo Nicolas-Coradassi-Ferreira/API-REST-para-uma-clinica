@@ -1,6 +1,6 @@
-package br.com.vollmed.api.model.paciente;
+package br.com.vollmed.api.dto.paciente;
 
-import br.com.vollmed.api.model.DadosEndereco;
+import br.com.vollmed.api.dto.DadosEndereco;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 

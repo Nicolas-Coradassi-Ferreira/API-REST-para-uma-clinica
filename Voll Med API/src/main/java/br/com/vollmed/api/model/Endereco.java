@@ -1,5 +1,6 @@
 package br.com.vollmed.api.model;
 
+import br.com.vollmed.api.dto.DadosEndereco;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
